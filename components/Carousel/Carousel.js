@@ -20,13 +20,13 @@
 
 let slideIndex = 1;
 
-function Carousel(){
+function Carousel() {
   const [carouselDiv, lbuttonDiv, rbuttonDiv] = ['div', 'div', 'div']
     .map(element => document.createElement(element));
-  
+
   const [img1, img2, img3, img4] = ['img', 'img', 'img', 'img']
     .map(element => document.createElement(element));
-  
+
   carouselDiv.classList.add('carousel');
   lbuttonDiv.classList.add('left-button');
   rbuttonDiv.classList.add('right-button');
@@ -44,43 +44,41 @@ function Carousel(){
   return carouselDiv;
 }
 
+// Add carousel to html
 const htmlCarousel = document.querySelector('.carousel-container');
-
 htmlCarousel.appendChild(Carousel());
 
+//Event listener for right button
 const rbuttonDiv = document.querySelector('.right-button');
 
-rbuttonDiv.addEventListener('click', ()=>{
+rbuttonDiv.addEventListener('click', () => {
   showSlides(slideIndex += 1);
 })
 
+//Event listener for Left button
 const lbuttonDiv = document.querySelector('.left-button');
 
-lbuttonDiv.addEventListener('click', ()=>{
+lbuttonDiv.addEventListener('click', () => {
   showSlides(slideIndex -= 1);
 })
 
-// let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function showSlides (n){
+//Animation function
+function showSlides(n) {
   debugger
 
   let slides = document.querySelectorAll(".carousel img")
 
   if (n > slides.length) {
     slideIndex = 1
-  } 
+  }
   if (n < 1) {
     slideIndex = slides.length
   }
   for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
+    slides[i].style.display = "none";
   }
 
-  slides[slideIndex-1].style.display = "block";
+  slides[slideIndex - 1].style.display = "block";
 }
+
+showSlides(slideIndex);
