@@ -17,3 +17,70 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+let slideIndex = 1;
+
+function Carousel(){
+  const [carouselDiv, lbuttonDiv, rbuttonDiv] = ['div', 'div', 'div']
+    .map(element => document.createElement(element));
+  
+  const [img1, img2, img3, img4] = ['img', 'img', 'img', 'img']
+    .map(element => document.createElement(element));
+  
+  carouselDiv.classList.add('carousel');
+  lbuttonDiv.classList.add('left-button');
+  rbuttonDiv.classList.add('right-button');
+
+  img1.src = '../../assets/carousel/mountains.jpeg';
+  img2.src = '../../assets/carousel/computer.jpeg';
+  img3.src = '../../assets/carousel/trees.jpeg';
+  img4.src = '../../assets/carousel/turntable.jpeg';
+
+  [lbuttonDiv, img1, img2, img3, img4, rbuttonDiv]
+    .forEach(element => carouselDiv.appendChild(element));
+
+  console.log(carouselDiv)
+
+  return carouselDiv;
+}
+
+const htmlCarousel = document.querySelector('.carousel-container');
+
+htmlCarousel.appendChild(Carousel());
+
+const rbuttonDiv = document.querySelector('.right-button');
+
+rbuttonDiv.addEventListener('click', ()=>{
+  showSlides(slideIndex += 1);
+})
+
+const lbuttonDiv = document.querySelector('.left-button');
+
+lbuttonDiv.addEventListener('click', ()=>{
+  showSlides(slideIndex -= 1);
+})
+
+// let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides (n){
+  debugger
+
+  let slides = document.querySelectorAll(".carousel img")
+
+  if (n > slides.length) {
+    slideIndex = 1
+  } 
+  if (n < 1) {
+    slideIndex = slides.length
+  }
+  for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
+  }
+
+  slides[slideIndex-1].style.display = "block";
+}
